@@ -38,7 +38,7 @@
       + App_Data/appsetting.json:
   
        
-    - Các thuộc tính:
+    - Các tham số:
         - _**Connection_String**_: Kết nối đến db Core
         - _**ConnectionString_News**_: Kết nối đến db Nghiệp vụ
         
@@ -53,15 +53,26 @@
         - _**SSOEnabled**_: Xác nhận có/không dùng SSO của IdentityServer
 2. Cấu hình IdentityServer
     - Khởi tạo database
-    - Tạo user _**IIS APPPOOL\<Application pool của IdentityServer trên IIS>**_ (vd: IIS APPPOOL\sso.dttt.vn)
+    - Tạo user _**IIS APPPOOL\<Application pool của IdentityServer trên IIS>**_ (VD: IIS APPPOOL\sso.dttt.vn)
     ![image](https://github.com/tungvp29/Document/assets/37463451/ff664bba-1f96-4fe1-8054-52416c857122)
 
     - Mapping user vừa tạo vào db _**IdentityServer**_
     ![image](https://github.com/tungvp29/Document/assets/37463451/5324a773-cb90-498a-8e7c-62b090fc09d5)
-     
-3. Cấu hình FileServer
-4. Cấu hình FileSocket
-5. Cấu hình ImageResizer
+
+    - Tạo Client site bằng store procedure _**CreateClient**_
+   
+    ![image](https://github.com/tungvp29/Document/assets/37463451/3a657f07-b9ee-4676-9203-2bda92ce8942)
+
+    - _**@Client**_: Mã client. Quy ước đặt mã như sau:
+      + Tiền tố: **TNG**
+      + Mã source: <Tên viết tắt> - <Số thứ tự>    (VD: FE-002)
+      + Hậu tố: ONLINE: **ON** | LOCAL: **OF**
+    - _**@Url**_: Domain của client        
+
+    - Hoặc sử dụng giao diện sau khi đăng nhập tài khoản quản trị
+4. Cấu hình FileServer
+5. Cấu hình FileSocket
+6. Cấu hình ImageResizer
 
 ## Lưu ý:
 1. Lỗi **500.30 - ASP.NET Core app failed to start**
