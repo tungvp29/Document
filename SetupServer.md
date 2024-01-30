@@ -11,16 +11,16 @@
 ## Cài đặt:
 1. Cài đặt SQL Server, SSMS, IIS
     - Lưu ý: Bật Fulltext khi cài SQL Server
-2. Cài đặt ASP.NET Core Runtime 7.0.15 Hosting Bundle (nâng lên các phiên bản khác nếu nâng cấp core lên các version .NET mới)
+2. Cài đặt **ASP.NET Core Runtime 7.0.15 Hosting Bundle** (nâng lên các phiên bản khác nếu nâng cấp core lên các version .NET mới)
     - [Download](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-aspnetcore-7.0.15-windows-hosting-bundle-installer)  
     - Setup
-4. Cài đặt ASP.NET Core 3.1 Hosting Bundle cho IdentityServer
+4. Cài đặt **ASP.NET Core 3.1 Hosting Bundle** cho IdentityServer
     - [Download](https://download.visualstudio.microsoft.com/download/pr/6744eb9d-dcd4-4386-9d87-b03b70fc58ce/818fadf3f3d919c17ba845b2195bfd9b/dotnet-hosting-3.1.32-win.exe)
     - Setup 
-4. Cài đặt IISNode (hỗ trợ chạy FileServer, FileSocket, ImageResizer của nodejs trên IIS)
+4. Cài đặt **IISNode** (hỗ trợ chạy FileServer, FileSocket, ImageResizer của nodejs trên IIS)
     - [Download](https://github.com/tjanczuk/iisnode/releases/tag/v0.2.21)
     - Setup
-5. Cài đặt Redis (cache server)
+5. Cài đặt **Redis** (cache server)
     - Download:
       + [Redis](https://github.com/MicrosoftArchive/redis/releases)
       + [Another Redis Desktop Manager](https://github.com/qishibo/AnotherRedisDesktopManager/releases)
@@ -56,7 +56,7 @@
     - Tạo user _**IIS APPPOOL\<Application pool của IdentityServer trên IIS>**_ (vd: IIS APPPOOL\sso.dttt.vn)
     ![image](https://github.com/tungvp29/Document/assets/37463451/ff664bba-1f96-4fe1-8054-52416c857122)
 
-    - Mapping user vào db _**IdentityServer**_
+    - Mapping user vừa tạo vào db _**IdentityServer**_
     ![image](https://github.com/tungvp29/Document/assets/37463451/5324a773-cb90-498a-8e7c-62b090fc09d5)
      
 3. Cấu hình FileServer
@@ -66,7 +66,6 @@
 ## Lưu ý:
 1. Lỗi **500.30 - ASP.NET Core app failed to start**
 ![image](https://github.com/tungvp29/Document/assets/37463451/4af848f7-b1b0-4dcf-9a91-c89eb00ab3ce)
-- Nguyên nhân: Xem EventViewer để xác định lỗi, nếu truy cập đến các file *.deps.json trong plugin bị từ chối thì xử lý như dưới
-- Xử lý:
-    Xóa các file *.deps.json khi publish lên server
-    Recycle IIS Application Pool
+    - Nguyên nhân: Xem EventViewer để xác định lỗi, nếu truy cập đến các file *.deps.json trong plugin bị từ chối thì xử lý như dưới
+    - Xử lý:
+        Xóa các file *.deps.json khi publish lên server và Recycle IIS Application Pool
