@@ -28,3 +28,5 @@
 - Cấu hình ImageResizer
 
 ## Lưu ý:
+Lỗi 500.30 - ASP.NET Core app failed to start
+![image](https://github.com/tungvp29/Document/assets/37463451/4af848f7-b1b0-4dcf-9a91-c89eb00ab3ce)
