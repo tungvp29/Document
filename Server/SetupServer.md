@@ -1,16 +1,21 @@
 # Setup server
 
-## Cấu hình và phiên bản các thành phần trong hướng dẫn này:
-- Windows server 2019 Standard version 1809
-- IIS version 10.0.17763.1
+## Phiên bản các thành phần trong hướng dẫn này:
+- Windows server 2019 Standard v1809
+- IIS v10.0.17763.1
 - MS SQL server 2019
-- SQL Server Management Studio (SSMS) 19.3
-- NodeJS
-- Redis
+- SQL Server Management Studio (SSMS) v19.3
+- NodeJS v14.20.0
+- Redis v3.0.504
 
 ## Cài đặt:
 1. Cài đặt SQL Server, SSMS, IIS
-    - Lưu ý: Bật FullText Engine khi cài SQL Server
+    - Lưu ý: Bật Full Text and Semantic Extractions for Search khi cài SQL Server
+
+![image](https://github.com/tungvp29/Document/assets/37463451/57e8200d-7a4e-4a0d-9136-f457d4972a5c)
+
+![image](https://github.com/tungvp29/Document/assets/37463451/681274f3-f835-48b0-a524-14ed4e25d204)
+
 2. Cài đặt **ASP.NET Core Runtime 7.0.15 Hosting Bundle** (nâng lên các phiên bản khác nếu nâng cấp core lên các version .NET mới)
     - [Download](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-aspnetcore-7.0.15-windows-hosting-bundle-installer)  
     - Setup
@@ -62,15 +67,20 @@
 
     - Tạo Client site bằng store procedure _**CreateClient**_
    
-    ![image](https://github.com/tungvp29/Document/assets/37463451/3a657f07-b9ee-4676-9203-2bda92ce8942)
+```
+DECLARE	@return_value int
 
-    - _**@Client**_: Mã client. Quy ước đặt mã như sau:
-      + Tiền tố: **TNG**
-      + Mã source: <Tên viết tắt> - <Số thứ tự>    (VD: FE-002)
-      + Hậu tố: ONLINE: **ON** | LOCAL: **OF**
-    - _**@Url**_: Domain của client        
+EXEC	@return_value = [dbo].[CreateClient]
+		@Client = N'TNG-FE-002-OF',
+		@Url = N'https://trinam.dttt.vn'
+```
+_**@Client**_: Mã client. Quy ước đặt mã như sau:
++ Tiền tố: **TNG**
++ Mã source: <Tên viết tắt> - <Số thứ tự>    (VD: FE-002)
++ Hậu tố: ONLINE: **ON** | LOCAL: **OF**
 
-    - Hoặc sử dụng giao diện sau khi đăng nhập tài khoản quản trị
+_**@Url**_: Domain của client     
+
 4. Cấu hình FileServer
 5. Cấu hình FileSocket
 6. Cấu hình ImageResizer
