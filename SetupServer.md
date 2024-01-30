@@ -5,35 +5,63 @@
 - IIS version 10.0.17763.1
 - MS SQL server 2019
 - SQL Server Management Studio (SSMS) 19.3
+- NodeJS
+- Redis
 
 ## Cài đặt:
-- Cài đặt SQL Server, SSMS, IIS
-- Cài đặt ASP.NET Core Runtime 7.0.15 Hosting Bundle (nâng lên các phiên bản khác nếu nâng cấp core lên các version .NET mới)
-  1. Download: https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-aspnetcore-7.0.15-windows-hosting-bundle-installer
-  2. Setup
-- Cài đặt ASP.NET Core 3.1 Hosting Bundle cho IdentityServer
-  1. Download: https://download.visualstudio.microsoft.com/download/pr/6744eb9d-dcd4-4386-9d87-b03b70fc58ce/818fadf3f3d919c17ba845b2195bfd9b/dotnet-hosting-3.1.32-win.exe
-  2. Setup 
-- Cài đặt IISNode (hỗ trợ chạy FileServer, FileSocket, ImageResizer của nodejs trên IIS)
-  1. Download: https://github.com/tjanczuk/iisnode/releases/tag/v0.2.21
-  2. Setup
+1. Cài đặt SQL Server, SSMS, IIS
+    - Lưu ý: Bật Fulltext khi cài SQL Server
+2. Cài đặt ASP.NET Core Runtime 7.0.15 Hosting Bundle (nâng lên các phiên bản khác nếu nâng cấp core lên các version .NET mới)
+    - [Download](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-aspnetcore-7.0.15-windows-hosting-bundle-installer)  
+    - Setup
+4. Cài đặt ASP.NET Core 3.1 Hosting Bundle cho IdentityServer
+    - [Download](https://download.visualstudio.microsoft.com/download/pr/6744eb9d-dcd4-4386-9d87-b03b70fc58ce/818fadf3f3d919c17ba845b2195bfd9b/dotnet-hosting-3.1.32-win.exe)
+    - Setup 
+4. Cài đặt IISNode (hỗ trợ chạy FileServer, FileSocket, ImageResizer của nodejs trên IIS)
+    - [Download](https://github.com/tjanczuk/iisnode/releases/tag/v0.2.21)
+    - Setup
+5. Cài đặt Redis (cache server)
+    - Download:
+      + [Redis](https://github.com/MicrosoftArchive/redis/releases)
+      + [Another Redis Desktop Manager](https://github.com/qishibo/AnotherRedisDesktopManager/releases)
+    - Setup:
+
 
 ## Thiết lập và cấu hình:
-- Cấu hình các client site trên IIS
-  1. Trang quản trị (BE)
-  2. Trang người dùng (FE)
-- Cấu hình IdentityServer
-  1. Khởi tạo database
-  2. Tạo user IIS APPPOOL\<Application pool của IdentityServer trên IIS> (vd: IIS APPPOOL\sso.dttt.vn)
-  ![image](https://github.com/tungvp29/Document/assets/37463451/ff664bba-1f96-4fe1-8054-52416c857122)
+1. Cấu hình các client site trên IIS
+    - Trang quản trị (BE):
+      + App_Data/appsetting.json:
 
-  3. Mapping user vào db IdentityServer
-  ![image](https://github.com/tungvp29/Document/assets/37463451/a23b7414-a699-4b32-bd61-a15bdf12386e)
+        ![image](https://github.com/tungvp29/Document/assets/37463451/4bebf7ed-7631-4bbc-a7b7-c1dc94783f7d)
 
-  4. 
-- Cấu hình FileServer
-- Cấu hình FileSocket
-- Cấu hình ImageResizer
+    - Trang người dùng (FE)
+      + App_Data/appsetting.json:
+  
+       
+    - Các thuộc tính:
+        - _**Connection_String**_: Kết nối đến db Core
+        - _**ConnectionString_News**_: Kết nối đến db Nghiệp vụ
+        
+        - _**Token**_: Token dùng để liên kết API lấy dữ liệu giữa các client site
+        - _**fileView**_: Domain url của ImageResizer
+        - _**fileCMS**_: Domain url của FileServer
+        - _**fileSocket**_: Domain url của FileSocket
+        - _**http**_: Domain url của Backend API
+        
+        - _**SSOUrl**_: Domain url của IdentityServer
+        - _**SSOClientId**_: Mã client trong db của IdentityServer
+        - _**SSOEnabled**_: Xác nhận có/không dùng SSO của IdentityServer
+2. Cấu hình IdentityServer
+    - Khởi tạo database
+    - Tạo user _**IIS APPPOOL\<Application pool của IdentityServer trên IIS>**_ (vd: IIS APPPOOL\sso.dttt.vn)
+    ![image](https://github.com/tungvp29/Document/assets/37463451/ff664bba-1f96-4fe1-8054-52416c857122)
+
+    - Mapping user vào db _**IdentityServer**_
+    ![image](https://github.com/tungvp29/Document/assets/37463451/5324a773-cb90-498a-8e7c-62b090fc09d5)
+     
+3. Cấu hình FileServer
+4. Cấu hình FileSocket
+5. Cấu hình ImageResizer
 
 ## Lưu ý:
 1. Lỗi **500.30 - ASP.NET Core app failed to start**
