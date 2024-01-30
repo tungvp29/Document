@@ -20,15 +20,25 @@
 
 ## Thiết lập và cấu hình:
 - Cấu hình các client site trên IIS
-  1. Trang quản trị
-  2. Trang public
+  1. Trang quản trị (BE)
+  2. Trang người dùng (FE)
 - Cấu hình IdentityServer
+  1. Khởi tạo database
+  2. Tạo user IIS APPPOOL\<Application pool của IdentityServer trên IIS> (vd: IIS APPPOOL\sso.dttt.vn)
+  ![image](https://github.com/tungvp29/Document/assets/37463451/ff664bba-1f96-4fe1-8054-52416c857122)
+
+  3. Mapping user vào db IdentityServer
+  ![image](https://github.com/tungvp29/Document/assets/37463451/a23b7414-a699-4b32-bd61-a15bdf12386e)
+
+  4. 
 - Cấu hình FileServer
 - Cấu hình FileSocket
 - Cấu hình ImageResizer
 
 ## Lưu ý:
-1. Lỗi 500.30 - ASP.NET Core app failed to start
+1. Lỗi **500.30 - ASP.NET Core app failed to start**
 ![image](https://github.com/tungvp29/Document/assets/37463451/4af848f7-b1b0-4dcf-9a91-c89eb00ab3ce)
-- Nguyên nhân: Xem EventViewer để xác định lỗi truy cập đến các file *.deps.json trong plugin bị từ chối
-- Xử lý: Xóa các file *.deps.json khi publish lên server
+- Nguyên nhân: Xem EventViewer để xác định lỗi, nếu truy cập đến các file *.deps.json trong plugin bị từ chối thì xử lý như dưới
+- Xử lý:
+    Xóa các file *.deps.json khi publish lên server
+    Recycle IIS Application Pool
