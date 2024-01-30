@@ -10,7 +10,7 @@
 
 ## Cài đặt:
 1. Cài đặt SQL Server, SSMS, IIS
-    - Lưu ý: Bật Fulltext khi cài SQL Server
+    - Lưu ý: Bật FullText Engine khi cài SQL Server
 2. Cài đặt **ASP.NET Core Runtime 7.0.15 Hosting Bundle** (nâng lên các phiên bản khác nếu nâng cấp core lên các version .NET mới)
     - [Download](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-aspnetcore-7.0.15-windows-hosting-bundle-installer)  
     - Setup
@@ -37,7 +37,8 @@
     - Trang người dùng (FE)
       + App_Data/appsetting.json:
   
-       
+       ![image](https://github.com/tungvp29/Document/assets/37463451/726cd42c-abc5-4950-a1d3-52fbeb3527cd)
+
     - Các tham số:
         - _**Connection_String**_: Kết nối đến db Core
         - _**ConnectionString_News**_: Kết nối đến db Nghiệp vụ
