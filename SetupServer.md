@@ -28,5 +28,7 @@
 - Cấu hình ImageResizer
 
 ## Lưu ý:
-Lỗi 500.30 - ASP.NET Core app failed to start
+1. Lỗi 500.30 - ASP.NET Core app failed to start
 ![image](https://github.com/tungvp29/Document/assets/37463451/4af848f7-b1b0-4dcf-9a91-c89eb00ab3ce)
+- Nguyên nhân: Xem EventViewer để xác định lỗi truy cập đến các file *.deps.json trong plugin bị từ chối
+- Xử lý: Xóa các file *.deps.json khi publish lên server
