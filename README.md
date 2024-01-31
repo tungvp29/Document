@@ -4,4 +4,8 @@
 2. [Thiết lập cấu hình](/Server/1.%20Configuration.md)
 3. [Các lỗi thường gặp và cách xử lý](/Server/1.%20Error.md)
 <br/>
-## Mã nguồn và các quy ước coding
+## Cấu trúc source
+1. Cấu trúc source
+2. Coding
+3. Building
+4. Error
