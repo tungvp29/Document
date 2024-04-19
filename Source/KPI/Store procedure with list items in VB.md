@@ -1,4 +1,4 @@
-## Function to send list items (DataTable) to Store procedure
+### Function to send list items (DataTable) to Store procedure
 ```VB 
 Public Overrides Sub TN_KPI_DashboardInfo_AddUpdate(PortalConnect As String, items As DataTable)
     'Return ExecuteDatasetWithTimeoutList(ConnectionString, "API_VNP_DANHSACHNHAN_CCT", 360, MaTinh, MaHuyen, KyChiTra, DSChuaChiTra)
@@ -28,7 +28,7 @@ Public Overrides Sub TN_KPI_DashboardInfo_AddUpdate(PortalConnect As String, ite
 End Sub
 ```
 
-## Convert from ArrayList to DataTable
+### Convert from ArrayList to DataTable
 ```VB
 Function ConvertArrayListToDataTable(ByVal arraylist As ArrayList) As DataTable
     Dim dt As DataTable = New DataTable()
@@ -58,7 +58,7 @@ Function ConvertArrayListToDataTable(ByVal arraylist As ArrayList) As DataTable
 End Function
 ```
 
-## Function called in presentations:
+### Function called in presentations:
 ```VB
 controller.TN_KPI_DashboardInfo_AddUpdate(_tabName, ConvertArrayListToDataTable(DashboardInfos))
 ```
