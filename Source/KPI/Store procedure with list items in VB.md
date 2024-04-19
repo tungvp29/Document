@@ -62,3 +62,87 @@ End Function
 ```VB
 controller.TN_KPI_DashboardInfo_AddUpdate(_tabName, ConvertArrayListToDataTable(DashboardInfos))
 ```
+
+### SQL Upsert store procedure from list items
+```SQL
+ALTER PROCEDURE [dbo].[TN_KPI_DashboardInfo_AddUpdate]
+(      
+	 @DashboardInfos List_TN_KPI_DashboardInfo READONLY
+)
+AS
+BEGIN
+	DECLARE @OutputTbl TABLE (Id INT)
+
+
+	MERGE TN_KPI_DashboardInfo AS t  
+	USING (  
+		SELECT * FROM @DashboardInfos  
+	) AS s ON t.Username = s.Username and t.YearOfScore = s.YearOfScore
+	WHEN MATCHED THEN  
+		UPDATE SET  
+			t.STT = s.STT
+			,t.Username = s.Username
+			,t.UserID = s.UserID
+			,t.DisplayName = s.DisplayName
+			,t.Total = s.Total
+			,t.Provinder_ID = s.Provinder_ID
+			,t.Provinder_Name = s.Provinder_Name
+			,t.Provinder_Code = s.Provinder_Code
+			,t.Ranks = s.Ranks
+			,t.Score = s.Score
+			,t.Position_Name = s.Position_Name
+			,t.VaiTro = s.VaiTro
+			,t.CreatedOnDate = s.CreatedOnDate
+			,t.IsBoss = s.IsBoss
+			,t.DocumentMustDone = s.DocumentMustDone
+			,t.DocumentOTDone = s.DocumentOTDone
+			,t.DocumentOTNotDone = s.DocumentOTNotDone
+			,t.DocumentOTGiaHan = s.DocumentOTGiaHan
+			,t.DocumentOTReturn = s.DocumentOTReturn
+			,t.DocumentLienDoi = s.DocumentLienDoi
+			,t.Modified = s.Modified
+			,t.YearOfScore = s.YearOfScore
+	WHEN NOT MATCHED THEN  
+		INSERT (  
+			STT, Username, UserID, DisplayName, Total, 
+			Provinder_ID, Provinder_Name, Provinder_Code, 
+			Ranks, Score, Position_Name, VaiTro, CreatedOnDate, 
+			IsBoss, 
+			DocumentMustDone, 
+			DocumentOTDone, 
+			DocumentOTNotDone, 
+			DocumentOTGiaHan, 
+			DocumentOTReturn, 
+			DocumentLienDoi, 
+			Modified, 
+			YearOfScore
+		)  
+		VALUES (  
+			s.STT, 
+			s.Username, 
+			s.UserID, 
+			s.DisplayName, 
+			s.Total, 
+			s.Provinder_ID, 
+			s.Provinder_Name, 
+			s.Provinder_Code, 
+			s.Ranks, 
+			s.Score, 
+			s.Position_Name, 
+			s.VaiTro, 
+			s.CreatedOnDate, 
+			s.IsBoss, 
+			s.DocumentMustDone, 
+			s.DocumentOTDone, 
+			s.DocumentOTNotDone, 
+			s.DocumentOTGiaHan, 
+			s.DocumentOTReturn, 
+			s.DocumentLienDoi, 
+			s.Modified, 
+			s.YearOfScore
+		);  
+
+	SELECT COUNT(Id) FROM @OutputTbl
+END
+
+```
