@@ -4,3 +4,4 @@ Sửa prod.json:
 "documentServer": "https://{domain-link}/documentserver",
 
 ![image](https://github.com/tungvp29/Document/assets/37463451/723673d5-f70e-4b36-96c8-ee409dd03163)
+Khai báo thiếu appSwitcher trong prod.json
